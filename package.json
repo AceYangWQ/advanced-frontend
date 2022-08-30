@@ -1,0 +1,20 @@
+{
+  "name": "advanced-frontend",
+  "version": "1.0.0",
+  "description": "advanced-frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/ywq1991/advanced-frontend.git",
+  "keywords": [],
+  "author": "ywq1991 <1120817870@qq.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ywq1991/advanced-frontend/issues"
+  },
+  "homepage": "https://github.com/ywq1991/advanced-frontend#readme",
+  "dependencies": {
+    "jquery": "^3.6.1"
+  }
+}

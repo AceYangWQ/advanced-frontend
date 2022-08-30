@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>advanced frontend</h2>
+        <child-com1 :foo="foo" :boo="boo" :coo="coo" :doo="doo" title="前端进阶"></child-com1>
+    </div>
+
+    <script>
+        Vue.component('child-com1', {
+            template: `<div>
+                            <p>foo: {{foo}}</p>
+                            <p>childCom1 的 $attrs : {{$attrs}}</p>
+                            <child-com2 v-bind="$attrs"></child-com2>
+                        </div>`,
+            props: {
+                foo: String
+            },
+            inheritAttrs: false, // 可以关闭自动挂载到组件根元素上的没有在props声明的属性
+            created() {
+                console.log(this.$attrs)
+            }
+        })
+
+        Vue.component('child-com2', {
+            template: `<div>
+                            <p>boo: {{boo}}</p>
+                            <p>childCom1 的 $attrs : {{$attrs}}</p>
+                        </div>`,
+            inheritAttrs: false,
+            props: {
+                boo: String
+            },
+            created() {
+                console.log(this.$attrs)
+            }
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                foo: 'javascript',
+                boo: 'html',
+                coo: 'css',
+                doo: 'vue'
+            }
+        })
+    </script>
+</body>
+
+</html>

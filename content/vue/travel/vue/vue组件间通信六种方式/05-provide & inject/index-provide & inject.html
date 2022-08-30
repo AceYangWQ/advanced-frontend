@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <children-a></children-a>
+        </div>
+    </div>
+    <script>
+        Vue.component('children-a', {
+            template: `
+                        <div>
+                            <h1>A 组件</h1>
+                            <button @click="() => changeColor()">改变color {{theme}}</button>
+                            <children-b></children-b>
+                        </div>
+                    `,
+            data() {
+                return {
+                    color: 'blue'
+                }
+            },
+            // provide() {
+            //     return {
+            //         theme: {
+            //             color: this.color // 这种方式绑定的数据并不是可响应式的
+            //         }
+            //     }
+            // },
+
+            // 方法一： 提供祖先组件的实例
+            // provide() {
+            //     return {
+            //         theme: this
+            //     }
+            // },
+            
+            // 方法二： 使用vue2.6最新的API Vue.observable 优化响应式 provide
+            provide() {
+                this.theme = Vue.observable({
+                    color: 'blue'
+                })
+                return {
+                    theme: this.theme
+                }
+            },
+            methods: {
+                // changeColor(color) {
+                //     if(color) {
+                //         this.color = color
+                //     } else {
+                //         this.color = this.color === 'blue' ? 'red' : 'blue'
+                //     }
+                // }
+
+                changeColor(color) {
+                    if(color) {
+                        this.theme.color = color
+                    } else {
+                        this.theme.color = this.theme.color === 'blue' ? 'red' : 'blue'
+                    }
+                }
+            },
+        })
+
+        Vue.component('children-b', {
+            template: `
+                        <div>
+                            <h1>B 组件</h1>
+                            <children-c></children-c>
+                        </div>
+                    `
+        })
+
+        Vue.component('children-c', {
+            template: `
+                        <div>
+                            <h1>C 组件</h1>
+                        </div>
+                    `,
+            functional: true,
+            inject: {
+                theme: {
+                    default: () => ({})
+                }
+            },
+            render(createElement, context) {
+                return createElement('h1', context.data, context.injections.theme.color)
+            },
+        })
+
+        let vm = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>

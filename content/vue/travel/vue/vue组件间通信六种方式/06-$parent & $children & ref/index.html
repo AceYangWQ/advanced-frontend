@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <component is="com-a" ref="comA"></component>
+    </div>
+
+    <script>
+        Vue.component('com-a', {
+            template: `
+                        <div>this is component a</div>
+                        `,
+            data() {
+                return {
+                    title: 'Vue.js'
+                }
+            },
+            methods: {
+                sayHello() {
+                    console.log('Hello!')
+                }
+            }
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            mounted() {
+                const comA = this.$refs.comA
+                console.log(comA.title)
+                comA.sayHello()
+            }
+        })
+    </script>
+</body>
+</html>

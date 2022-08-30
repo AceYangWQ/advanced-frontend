@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <users :users="users"></users>
+    </div>
+
+    <script>
+         Vue.component('users', {
+            props: ['users'],
+            template: `
+                <ul>
+                    <li v-for="(item, index) in users" :key="index">{{item}}</li>
+                </ul>
+            `
+        });
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                users: ['AceYang', 'AllenPeng', 'PrettyChen']
+            }
+        });
+
+        // 总结：父组件通过props向下传递数据给子组件。注：组件中的数据共有三种形式：data、props、computed
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+@mixin flex($direction: column, $flex: flex) {
+  display: if($flex==flex, flex, inline-flex);
+  flex-direction: $direction;
+  flex-wrap: wrap;
+}
+
+// 不换行,超出显示...
+@mixin no-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin one-border($direction: bottom) {
+  position: relative;
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(.5);
+    transform-origin: 0 0;
+    pointer-events: none;
+    box-sizing: border-box;
+    border-#{$direction}: 2px solid $border-color-e;
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-a content="Ace"></my-a>
+        <my-b content="Yang"></my-b>
+    </div>
+
+    <script>
+        let Event = new Vue()
+
+        Vue.component('my-a', {
+            template: `<div @click="handleBtnClick">{{selfContent}}</div>`,
+            props: ['content'],
+            data() {
+                return {
+                    selfContent: this.content
+                }
+            },
+            methods: {
+                handleBtnClick() {
+                    Event.$emit('chang', this.selfContent)
+                }
+            }
+        })
+
+        Vue.component('my-b', {
+            template: `<div>{{otherContent}} {{selfContent}}</div>`,
+            props: ['content'],
+            data() {
+                return {
+                    selfContent: this.content,
+                    otherContent: ''
+                }
+            },
+            mounted() {
+                Event.$on('chang', msg => {
+                    this.otherContent = msg
+                })
+            }
+        })
+
+        let vm = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>
