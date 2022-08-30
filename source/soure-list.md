@@ -1,0 +1,9 @@
+underscore
+lodash
+jQuery
+zepto
+axios
+better-scroll
+moment
+fastclick
+vue-awesome-swiper

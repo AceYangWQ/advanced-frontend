@@ -1,0 +1,12 @@
+{
+  "name": "source",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "jQuery": "^1.7.4",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.0",
+    "underscore": "^1.11.0"
+  }
+}
