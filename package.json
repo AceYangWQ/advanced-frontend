@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/ywq1991/advanced-frontend#readme",
   "dependencies": {
-    "jquery": "^3.6.1"
+    "jquery": "^3.6.1",
+    "redux": "^4.2.0"
   }
 }
