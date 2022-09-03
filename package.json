@@ -16,6 +16,8 @@
   "homepage": "https://github.com/ywq1991/advanced-frontend#readme",
   "dependencies": {
     "jquery": "^3.6.1",
-    "redux": "^4.2.0"
+    "lodash": "^4.17.21",
+    "redux": "^4.2.0",
+    "underscore": "^1.13.4"
   }
 }
